@@ -1,0 +1,13 @@
+[theme]
+base = "light"
+primaryColor = "#2F5BFF"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F3F5FA"
+textColor = "#14171F"
+font = "sans serif"
+
+[client]
+toolbarMode = "minimal"
+
+[server]
+headless = true
