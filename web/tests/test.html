@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>OutreachPilot tests</title>
+  <style>
+    body { font: 14px/1.5 system-ui, sans-serif; margin: 24px; }
+    .ok { color: #0a7d3c; } .bad { color: #b00020; font-weight: 600; }
+    #summary { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+  </style>
+</head>
+<body>
+  <div id="summary">Running...</div>
+  <div id="out"></div>
+  <script type="module">
+    import { run } from "./harness.js";
+    import "./tests.js";
+    run();
+  </script>
+</body>
+</html>

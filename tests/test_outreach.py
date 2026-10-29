@@ -147,3 +147,25 @@ def test_plan_respects_daily_limit_and_only_includes_chosen_tiers():
     plan = build_plan(scored(), date(2026, 11, 2), per_day=2)
     assert set(plan["tier"]) <= {"A", "B"}
     assert plan.groupby("email_1").size().max() <= 2
+
+
+def test_blank_csv_cells_are_empty_text_not_the_word_nan():
+    clean, _ = parse_prospects(SAMPLE)
+    row = clean[clean.domain == "startupcompass.example"].iloc[0]
+    assert row["contact_email"] == "" and row["contact_name"] == ""
+    out = score_all(clean, Settings()).set_index("domain")
+    assert "no contact email" in out.loc["startupcompass.example", "flags"]
+
+
+def test_blank_contact_name_greets_there_not_nan():
+    clean, _ = parse_prospects(SAMPLE)
+    row = clean[clean.domain == "startupcompass.example"].iloc[0].to_dict()
+    mail = draft_email(row, SENDER, 0)
+    assert mail["body"].startswith("Hi there,") and "nan" not in mail["body"].lower().replace("finance", "")
+    assert mail["needs_contact"] is True
+
+
+def test_number_with_two_decimal_points_is_invalid_not_a_crash():
+    df = pd.DataFrame({"domain": ["x.com"], "dr": ["1.2.3"], "monthly_traffic": [5000], "niche": ["seo"]})
+    clean, issues = parse_prospects(df)
+    assert clean.empty and len(issues) == 1

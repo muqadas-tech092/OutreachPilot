@@ -45,7 +45,7 @@ def _to_number(value) -> float | None:
     if value is None or (isinstance(value, float) and math.isnan(value)):
         return None
     cleaned = re.sub(r"[^\d.]", "", str(value).replace(",", ""))
-    if cleaned in ("", "."):
+    if cleaned in ("", ".") or cleaned.count(".") > 1:
         return None
     return float(cleaned)
 
@@ -64,6 +64,8 @@ def parse_prospects(df: pd.DataFrame) -> tuple[pd.DataFrame, list[str]]:
     for col in OPTIONAL:
         if col not in df.columns:
             df[col] = ""
+        # Blank CSV cells arrive as NaN; keep them as empty text, not the string "nan".
+        df[col] = df[col].fillna("").astype(str)
     df["domain"] = df["domain"].map(normalize_domain)
     df["dr"] = df["dr"].map(_to_number)
     df["monthly_traffic"] = df["monthly_traffic"].map(_to_number)

@@ -19,6 +19,15 @@ streamlit run app.py
 ```
 Works with no API key. For AI polish, set `GROQ_API_KEY` in `.streamlit/secrets.toml` or as an environment variable.
 
+## Web version (Netlify)
+`web/` is a static, dependency-free JavaScript port of the same logic, so the tool can be hosted on Netlify (which cannot run Streamlit).
+- **Private by design:** everything runs in the visitor's browser. The CSV is never uploaded, and `netlify.toml` sends a strict Content-Security-Policy that blocks any other network request.
+- **Same results as the Python version:** the browser tests compare every score, tier, flag, ranking and warning against the Python output (a parity check).
+- **Differences:** the optional AI email polish is not included (it would need an API key in the browser); the output is the template drafts.
+- **Run locally:** `python -m http.server --directory web 8000`, then open http://localhost:8000. No build step.
+- **Tests:** open http://localhost:8000/tests/test.html (32 tests, including UI tests that load the real page and a hostile-CSV test).
+- **Deploy:** connect the repo to Netlify. `netlify.toml` already sets the publish folder to `web`.
+
 ## Use your own data
 Upload a CSV with: `domain, dr, monthly_traffic, niche` (required) and `country, contact_name, contact_email, traffic_trend (up/flat/down), notes` (optional). See `data/sample_prospects.csv`. The sample sites use the reserved `.example` domain, so none of them are real.
 
@@ -27,7 +36,7 @@ Upload a CSV with: `domain, dr, monthly_traffic, niche` (required) and `country,
 pip install pytest
 pytest
 ```
-23 tests cover cleaning, scoring, red flags, email safety, the AI-polish guardrails, the schedule and a headless run of the full UI.
+26 Python tests cover cleaning, scoring, red flags, blank-cell handling, email safety, the AI-polish guardrails, the schedule and a headless run of the full UI.
 
 ## Limits (honest list)
 - DR and traffic come from your own export (Ahrefs, Semrush or similar). The tool does not fetch them.

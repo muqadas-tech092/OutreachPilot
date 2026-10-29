@@ -1,0 +1,87 @@
+{
+ "issues": [
+  "1 duplicate domain(s) removed (kept the row with the highest DR)."
+ ],
+ "ranked": [
+  {
+   "domain": "growthledger.example",
+   "score": 90,
+   "tier": "A",
+   "flags": []
+  },
+  {
+   "domain": "marketingharbor.example",
+   "score": 84,
+   "tier": "A",
+   "flags": []
+  },
+  {
+   "domain": "copycatseo.example",
+   "score": 69,
+   "tier": "B",
+   "flags": []
+  },
+  {
+   "domain": "contentcraftpro.example",
+   "score": 61,
+   "tier": "B",
+   "flags": []
+  },
+  {
+   "domain": "seoalmanac.example",
+   "score": 59,
+   "tier": "B",
+   "flags": []
+  },
+  {
+   "domain": "cloudcartnews.example",
+   "score": 57,
+   "tier": "B",
+   "flags": []
+  },
+  {
+   "domain": "startupcompass.example",
+   "score": 49,
+   "tier": "C",
+   "flags": [
+    "no contact email"
+   ]
+  },
+  {
+   "domain": "storefrontweekly.example",
+   "score": 43,
+   "tier": "C",
+   "flags": []
+  },
+  {
+   "domain": "pixelpantry.example",
+   "score": 33,
+   "tier": "Skip",
+   "flags": []
+  },
+  {
+   "domain": "leadforge.example",
+   "score": 27,
+   "tier": "Skip",
+   "flags": [
+    "traffic declining"
+   ]
+  },
+  {
+   "domain": "tinytechtips.example",
+   "score": 15,
+   "tier": "Skip",
+   "flags": [
+    "below your minimums"
+   ]
+  },
+  {
+   "domain": "luckyspinhub.example",
+   "score": 0,
+   "tier": "Skip",
+   "flags": [
+    "red-flag niche"
+   ]
+  }
+ ]
+}

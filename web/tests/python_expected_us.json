@@ -1,0 +1,62 @@
+[
+ {
+  "domain": "growthledger.example",
+  "score": 90,
+  "tier": "A"
+ },
+ {
+  "domain": "marketingharbor.example",
+  "score": 74,
+  "tier": "B"
+ },
+ {
+  "domain": "copycatseo.example",
+  "score": 69,
+  "tier": "B"
+ },
+ {
+  "domain": "contentcraftpro.example",
+  "score": 51,
+  "tier": "C"
+ },
+ {
+  "domain": "seoalmanac.example",
+  "score": 49,
+  "tier": "C"
+ },
+ {
+  "domain": "startupcompass.example",
+  "score": 49,
+  "tier": "C"
+ },
+ {
+  "domain": "cloudcartnews.example",
+  "score": 47,
+  "tier": "C"
+ },
+ {
+  "domain": "storefrontweekly.example",
+  "score": 43,
+  "tier": "C"
+ },
+ {
+  "domain": "pixelpantry.example",
+  "score": 33,
+  "tier": "Skip"
+ },
+ {
+  "domain": "leadforge.example",
+  "score": 17,
+  "tier": "Skip"
+ },
+ {
+  "domain": "tinytechtips.example",
+  "score": 5,
+  "tier": "Skip"
+ },
+ {
+  "domain": "luckyspinhub.example",
+  "score": 0,
+  "tier": "Skip"
+ }
+]

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OutreachPilot: ranked outreach plans</title>
+  <meta name="description" content="Score guest-post prospects transparently, draft honest outreach emails and plan follow-ups. Runs entirely in your browser.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>📬 OutreachPilot</h1>
+    <p>Stop guessing which sites to pitch. Score prospects transparently, draft honest emails and plan follow-ups. <strong>Runs in your browser: your list is never uploaded.</strong></p>
+  </header>
+
+  <div class="layout">
+    <aside class="side" aria-label="Settings">
+      <h2>Who do you want to reach?</h2>
+      <label>Target niche <input id="niche" value="digital marketing, seo"></label>
+      <label>Target countries (codes, comma separated, blank = any) <input id="countries" placeholder="US, UK, CA"></label>
+      <label>Minimum DR <input id="minDr" type="number" min="0" max="100" value="20"></label>
+      <label>Minimum monthly traffic <input id="minTraffic" type="number" min="0" step="500" value="1000"></label>
+      <details>
+        <summary>Scoring weights (total 100)</summary>
+        <label>Authority <input id="wAuthority" type="number" min="0" max="100" value="35"></label>
+        <label>Traffic <input id="wTraffic" type="number" min="0" max="100" value="25"></label>
+        <label>Relevance <input id="wRelevance" type="number" min="0" max="100" value="30"></label>
+        <label>Country fit <input id="wGeo" type="number" min="0" max="100" value="10"></label>
+        <p id="weightNote" class="note" hidden></p>
+      </details>
+      <h2>Your details (used in emails)</h2>
+      <label>Your name <input id="senderName" autocomplete="name"></label>
+      <label>Your website <input id="senderSite" placeholder="https://"></label>
+      <label>Company (optional) <input id="senderCompany"></label>
+      <label>What are you offering? <input id="offer" value="a short, practical guest article"></label>
+    </aside>
+
+    <main class="main">
+      <section>
+        <h2>1. Your prospect list</h2>
+        <p class="note">Columns: domain, dr, monthly_traffic, niche (required); country, contact_name, contact_email, traffic_trend (up/flat/down), notes (optional).</p>
+        <label class="file">Upload a CSV <input id="file" type="file" accept=".csv,text/csv"></label>
+        <label class="inline"><input id="useSample" type="checkbox" checked> Use the sample list (fictional sites)</label>
+        <div id="issues" role="status"></div>
+      </section>
+
+      <section id="metrics" class="metrics" aria-live="polite"></section>
+
+      <nav class="tabs" role="tablist">
+        <button role="tab" aria-selected="true" data-tab="ranked">Ranked prospects</button>
+        <button role="tab" aria-selected="false" data-tab="emails">Email drafts</button>
+        <button role="tab" aria-selected="false" data-tab="plan">Follow-up plan</button>
+      </nav>
+      <section id="tab-ranked" class="panel"></section>
+      <section id="tab-emails" class="panel" hidden></section>
+      <section id="tab-plan" class="panel" hidden></section>
+
+      <footer class="note">
+        Scores are explained, not magic: DR and traffic come from your own export, and relevance is keyword overlap, so skim each site before you pitch.
+        This tool drafts emails; it does not send them. Check local anti-spam rules (CAN-SPAM, GDPR) before emailing at scale. Sample data is fictional.
+        Built by <a href="https://www.linkedin.com/in/muqadas-zahoor-b2a38b2b3/" rel="noopener">Muqadas Zahoor</a> with AI assistance.
+        <a href="https://github.com/muqadas-tech092/OutreachPilot" rel="noopener">Source code</a>.
+      </footer>
+    </main>
+  </div>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
