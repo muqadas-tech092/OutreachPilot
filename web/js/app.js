@@ -162,7 +162,7 @@ function renderPlan() {
     ...(plan.length
       ? [
           h("div", { class: "tablewrap" }, h("table", {},
-            h("thead", {}, h("tr", {}, cols.map((c) => h("th", {}, c)))),
+            h("thead", {}, h("tr", {}, cols.map((c) => h("th", {}, c.replace(/_/g, " "))))),
             h("tbody", {}, plan.map((p) => h("tr", {}, cols.map((c) => h("td", {}, p[c]))))))),
           h("button", { class: "btn", onclick: () => download("followup_plan.csv", toCSV(plan, cols)) }, "Download follow-up plan (CSV)"),
           h("p", { class: "note" }, "Follow-ups go out on business days only, at +4 and +9 days."),

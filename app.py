@@ -13,9 +13,8 @@ from outreachpilot.schedule import build_plan
 from outreachpilot.scoring import Settings, parse_prospects, score_all
 
 ROOT = Path(__file__).parent
-TIER_ICON = {"A": "🟢", "B": "🟡", "C": "🟠", "Skip": "🔴"}
 
-st.set_page_config(page_title="OutreachPilot", page_icon="📬", layout="wide")
+st.set_page_config(page_title="OutreachPilot", layout="wide")
 
 
 def get_key() -> str | None:
@@ -74,7 +73,7 @@ def sidebar() -> tuple[Settings, Sender]:
 
 
 def main() -> None:
-    st.title("📬 OutreachPilot")
+    st.title("OutreachPilot")
     st.caption("Stop guessing which sites to pitch. Score prospects transparently, draft honest emails and plan follow-ups.")
     settings, sender = sidebar()
     raw = load_input()
@@ -97,7 +96,7 @@ def main() -> None:
     cols = st.columns(5)
     cols[0].metric("Prospects", len(scored))
     for col, tier in zip(cols[1:], ["A", "B", "C", "Skip"]):
-        col.metric(f"{TIER_ICON[tier]} Tier {tier}", int(counts.get(tier, 0)))
+        col.metric(f"Tier {tier}", int(counts.get(tier, 0)))
 
     tab1, tab2, tab3 = st.tabs(["Ranked prospects", "Email drafts", "Follow-up plan"])
 
@@ -107,7 +106,7 @@ def main() -> None:
         st.dataframe(show, use_container_width=True, hide_index=True)
         st.markdown("##### Why each site got its score")
         for _, row in scored.iterrows():
-            with st.expander(f"{TIER_ICON[row['tier']]} {row['domain']}: {row['score']} ({row['tier']})"):
+            with st.expander(f"{row['domain']}: {row['score']} ({row['tier']})"):
                 for reason in row["reasons"]:
                     st.markdown(f"- {md_safe(reason)}")
                 if row["notes"]:
